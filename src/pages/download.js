@@ -6,7 +6,7 @@ export const download = {
 <div class="download-box">
   <svg class="os-logo" viewBox="0 0 88 88" width="52" height="52" role="img" aria-label="Windows"><path fill="#0078d4" d="M0 0h42v42H0zM46 0h42v42H46zM0 46h42v42H0zM46 46h42v42H46z"/></svg>
   <div>
-    <a class="file" href="downloads/QuarkSuit-v1-Setup.exe">QuarkSuit-v1-Setup.exe</a><br>
+    <a class="file" href="https://github.com/nikezaxo/quarksuit/releases/latest/download/QuarkSuit-v1-Setup.exe">QuarkSuit-v1-Setup.exe</a><br>
     QuarkSuit v1 (1.0) installer for Windows 10 (version 1903 or later) and Windows 11, 64-bit.<br>
     <span class="small muted">One file; works offline. By downloading you accept the licence below.</span>
   </div>

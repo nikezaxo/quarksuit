@@ -1,10 +1,21 @@
 export const home = {
   title: 'Home',
   render: () => `
-<figure class="float-right">
-  <img src="tutorial/complex-rotate.gif" width="440" height="300" alt="Streptavidin (PDB 1STP) turning in the QuarkSuit 3D view">
-  <figcaption>Streptavidin with its crystal waters (PDB 1STP) in the Visualization workspace.</figcaption>
-</figure>
+<section class="hero">
+  <picture>
+    <source type="image/webp" srcset="hero-1000.webp 1000w, hero-2000.webp 2000w" sizes="(max-width: 860px) 134vw, (max-width: 1000px) 100vw, 1000px">
+    <img class="hero-art" src="hero-1000.jpg" srcset="hero-1000.jpg 1000w, hero-2000.jpg 2000w" sizes="(max-width: 860px) 134vw, (max-width: 1000px) 100vw, 1000px"
+         width="1000" height="562" alt="A protein-ligand complex saved from the QuarkSuit 3D view">
+  </picture>
+  <div class="hero-text">
+    <img class="hero-logo" src="logo-256.png" width="96" height="96" alt="QuarkSuit logo">
+    <p class="hero-headline">Structure-based drug design on your own computer</p>
+    <p class="hero-desc">Prepare proteins and ligands, dock them into a binding site, and study every
+    contact in 3D and in a 2D interaction map, all in one program for Windows.</p>
+    <p class="hero-links"><a class="hero-button" href="#download">Download QuarkSuit v1</a>
+    <span class="hero-more"><a href="#tutorial">Tutorial</a> &middot; <a href="#manual">Manual</a></span></p>
+  </div>
+</section>
 
 <p class="lead">QuarkSuit is a Windows program for structure-based drug design. It prepares a
 protein receptor and a ligand, docks the ligand into a binding site with a built-in engine

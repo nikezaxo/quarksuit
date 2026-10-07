@@ -39,7 +39,7 @@ steps. Allow about fifteen minutes.</p>
 <h2 id="t-files">1. Files</h2>
 <p>You need only <a href="tutorial/files/1STP.pdb">1STP.pdb</a>, as downloaded from the Protein
 Data Bank. Make a folder for the tutorial and put the file in it; the screenshots use
-<code>C:\\Users\\Nihad\\Desktop\\docking\\tutorial</code>. The files you will create are also
+<code>C:\\QuarkSuit tutorial</code>. The files you will create are also
 available on the <a href="#download/tutorial-files">Download</a> page, so you can compare yours.</p>
 ${fig(1, '01-home.png', 'The home screen. Each of the four buttons opens a workspace and starts a fresh session.')}
 

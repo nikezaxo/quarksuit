@@ -172,7 +172,7 @@ their contacts.</p>
 ${fig(14, '13-visualization.png', '1STP.pdb in the Visualization workspace: one chain, the biotin and 84 waters, each listed separately.')}
 
 <h2 id="t-editor">12. The ligand editor</h2>
-<p><span class="ui">LIGAND OPTIMIZATION</span> opens the ligand editor: a 2D drawing and a 3D view of
+<p><span class="ui">DESIGN SMALL MOLECULES</span> opens the molecule editor: a 2D drawing and a 3D view of
 the same molecule. Open <a href="tutorial/files/imatinib.sdf">imatinib.sdf</a> with
 <span class="ui">File &rsaquo; Open molecule&hellip;</span>; <span class="ui">Edit &rsaquo; Clean 2D</span>
 tidies the drawing without moving the 3D atoms (figure 15).</p>
@@ -186,6 +186,6 @@ ${fig(16, '15-minimization.png', 'Minimisation of imatinib with MMFF94 and L-BFG
   <figcaption><b>Figure 17.</b> The replay of the same minimisation.</figcaption>
 </figure>
 
-<p class="back"><a href="#tutorial">Back to the top</a> &middot; <a href="#manual">Manual</a></p>
+<p class="back"><a href="#tutorial">Back to the top</a> &middot; <a href="#documentation">Documentation</a></p>
 `,
 };

@@ -173,6 +173,14 @@ figcaption b { color: var(--ink); }
 .toc li { break-inside: avoid; }
 .toc .toc-title { font-variant: small-caps; letter-spacing: .05em; margin: 0; }
 .back { font-size: 14px; text-align: right; margin: 18px 0 0; }
+.toc .toc-part { font-weight: bold; margin: 8px 0 0; }
+
+/* ---------------------------------------------------------------- equations (MathML) */
+math { font-family: "Cambria Math", "STIX Two Math", math; }
+.eq { display: flex; align-items: center; gap: 14px; margin: 12px 0 14px; overflow-x: auto; overflow-y: hidden; }
+.eq math { flex: 1; font-size: 1.1em; }
+.eq .eqn { flex: none; color: var(--ink-soft); }
+mtd { text-align: left; }
 
 .step { font-weight: bold; }
 .people { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 22px 18px; margin: 16px 0; }

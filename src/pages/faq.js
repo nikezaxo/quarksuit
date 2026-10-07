@@ -33,7 +33,7 @@ ${qa('refused', 'Why does Load Protein (or Load Ligand) refuse my file?', `<p>Lo
 residues, and Load Ligand any molecule that is not a protein. <i>Check input file, non-protein residue</i> means a
 small molecule was opened as the protein; <i>protein residue</i> means a protein was opened as the ligand. For a
 protein&ndash;ligand complex, Load Ligand lists the ligands inside the file so you can take one. See
-<a href="#manual/m-loading">Manual, chapter 5</a>.</p>`)}
+<a href="#documentation/d-loading">Documentation, chapter 4</a>.</p>`)}
 
 ${qa('charges', 'Which partial charges should I choose?', `<p>For docking in QuarkSuit or AutoDock Vina it does not
 matter: the score does not use partial charges. They are written to PDBQT files for programs that do use them, such
@@ -60,7 +60,7 @@ ${qa('flex', 'Can receptor side chains move?', `<p>No. The receptor is rigid in 
 flexible.</p>`)}
 
 ${qa('gpu', 'Does docking use the graphics card?', `<p>Optionally, for building the receptor energy grids (OpenCL);
-the search runs on the processor cores. See <a href="#manual/engine">Manual, section 9.6</a>.</p>`)}
+the search runs on the processor cores. See <a href="#documentation/d-gpu">Documentation, chapter 24</a>.</p>`)}
 
 ${qa('metal', 'Can I dock to a metalloprotein?', `<p>Yes. Metal ions are kept during preparation, metal-bound
 cysteines and histidines get suitable protonation, and the score treats metals as it does in Vina. Ligands that bind

@@ -190,7 +190,7 @@ point at it.</p>
 
 <div class="toc" id="contents">
   <p class="toc-title">Contents</p>
-  <ol><li><a href="#m-intro">Introduction</a></li><li><a href="#m-install">Installation</a></li><li><a href="#m-start">Getting started</a></li><li><a href="#m-settings">Settings</a></li><li><a href="#m-loading">Loading structures</a></li><li><a href="#m-properties">The Molecule Properties window</a></li><li><a href="#m-prep">Preparing structures</a></li><li><a href="#m-view">The 3D view and display options</a></li><li><a href="#m-docking">Running a docking</a></li><li><a href="#m-analysis">Analysing results</a></li><li><a href="#m-diagram">The 2D interaction diagram</a></li><li><a href="#m-saving">Saving and exporting</a></li><li><a href="#m-report">The docking report</a></li><li><a href="#m-vis">The Visualization workspace</a></li><li><a href="#m-editor">The ligand editor</a></li><li><a href="#m-validation">Validation and limits</a></li><li><a href="#m-trouble">Troubleshooting</a></li><li><a href="#m-glossary">Glossary</a></li><li><a href="#m-refs">References and credits</a></li></ol>
+  <ol><li><a href="#m-intro">Introduction</a></li><li><a href="#m-install">Installation</a></li><li><a href="#m-start">Getting started</a></li><li><a href="#m-settings">Settings</a></li><li><a href="#m-loading">Loading structures</a></li><li><a href="#m-properties">The Molecule Properties window</a></li><li><a href="#m-prep">Preparing structures</a></li><li><a href="#m-view">The 3D view and display options</a></li><li><a href="#m-docking">Running a docking</a></li><li><a href="#m-analysis">Analysing results</a></li><li><a href="#m-diagram">The 2D interaction diagram</a></li><li><a href="#m-saving">Saving and exporting</a></li><li><a href="#m-report">The docking report</a></li><li><a href="#m-vis">The Visualization workspace</a></li><li><a href="#m-editor">Small molecule design</a></li><li><a href="#m-validation">Validation and limits</a></li><li><a href="#m-trouble">Troubleshooting</a></li><li><a href="#m-glossary">Glossary</a></li><li><a href="#m-refs">References and credits</a></li></ol>
 </div>
 
 <h2 id="m-intro">1. Introduction</h2>
@@ -205,7 +205,7 @@ other programs are not needed.</p>
   <tr><td><span class="ui">NEW DOCKING PROJECT</span></td><td>Load a receptor and a ligand, place the search box, dock, and analyse the poses.</td><td><a href="#m-docking">9</a>&ndash;<a href="#m-report">13</a></td></tr>
   <tr><td><span class="ui">PREPARE STRUCTURES</span></td><td>Add hydrogens and charges, remove waters, chains or ligands, and save docking-ready files.</td><td><a href="#m-prep">7</a></td></tr>
   <tr><td><span class="ui">VISUALIZATION</span></td><td>View several structures together, split into chains, ligands, ions and waters.</td><td><a href="#m-vis">14</a></td></tr>
-  <tr><td><span class="ui">LIGAND OPTIMIZATION</span></td><td>Draw, edit and minimise ligands in a linked 2D/3D editor.</td><td><a href="#m-editor">15</a></td></tr>
+  <tr><td><span class="ui">DESIGN SMALL MOLECULES</span></td><td>Draw, edit and minimise small molecules (ligands and others) in a linked 2D/3D editor.</td><td><a href="#m-editor">15</a></td></tr>
 </table></div>
 
 <h3 id="formats">File formats</h3>
@@ -262,9 +262,9 @@ discarded. A docking or minimisation that is still running keeps the workspace o
 <h3>Menus</h3>
 <div class="table-wrap"><table>
   <tr><th>Menu</th><th>Commands</th></tr>
-  <tr><td>File</td><td>New Project <kbd>Ctrl+N</kbd>, Open Project <kbd>Ctrl+O</kbd>, Save Project <kbd>Ctrl+S</kbd>, Save Project As <kbd>Ctrl+Shift+S</kbd>, Load Protein, Load Ligand, Save Complex As, Save Docking Result, Export (3D view screenshot, 2D map; PNG or JPG), Home, Exit. In Visualization: Open Files, Close All.</td></tr>
-  <tr><td>Edit</td><td>Undo <kbd>Ctrl+Z</kbd>, Redo <kbd>Ctrl+Y</kbd>, Colors (background, protein, ligand, grid box).</td></tr>
-  <tr><td>View</td><td>Protein Style, Style Options, Protein Color, Ligand Style, Ligand Color, Water Display, Modern Shader, Black Outlines, Show Box Faces, Parameters Panel, Terminal Output, Docking Analysis, 2D Interaction Map, Molecule Properties, Reset Camera View.</td></tr>
+  <tr><td>File</td><td>New Project <kbd>Ctrl+N</kbd>, Open Project <kbd>Ctrl+O</kbd>, Save Project <kbd>Ctrl+S</kbd>, Save Project As <kbd>Ctrl+Shift+S</kbd>, Recent Projects (the last eight projects opened or saved; each opens in its own workspace), Load Protein, Load Ligand, Save Complex As, Save Docking Result, Export (3D view screenshot, 2D map; PNG or JPG), Home, Exit. In Visualization: Open Files, Open Project, Recent Projects, Close All, Save Project, Save Project As.</td></tr>
+  <tr><td>Edit</td><td>Undo <kbd>Ctrl+Z</kbd>, Redo <kbd>Ctrl+Y</kbd>, Copy 3D View Image <kbd>Ctrl+Shift+C</kbd> (a picture of the 3D view at the window&rsquo;s size, to paste into a document or slide), Copy 2D Map Image, Clear Interaction Lines, Colors (background, protein, ligand, grid box). In Visualization also the selection commands: Select All <kbd>Ctrl+A</kbd>, Select (all protein chains, all ligands, ions, water), Invert Selection, Clear Selection, Zoom to Selection, Show Only Selected, Show Selected, Hide Selected, Show All, Delete Selected <kbd>Del</kbd>.</td></tr>
+  <tr><td>View</td><td>Protein Style, Style Options, Protein Color, Ligand Style, Ligand Color, Water Display, Modern Shader, Black Outlines, Show Box Faces, Parameters Panel, Terminal Output, Docking Analysis, 2D Interaction Map, Molecule Properties, Reset Camera View, Zoom to Fit, Center on Ligand, View From (front, back, left, right, top, bottom), Spin.</td></tr>
   <tr><td>Tools</td><td>Lighting, Background Blur, Interactions (line style and colours), Labels.</td></tr>
   <tr><td>Help</td><td>Command Guide <kbd>F1</kbd>, Settings, About QuarkSuit.</td></tr>
 </table></div>
@@ -280,7 +280,7 @@ results and settings (not the camera); a slider drag or box move counts as one s
 <div class="table-wrap"><table>
   <tr><th>Setting</th><th>Choices</th><th>Effect</th></tr>
   <tr><td>Language</td><td>English, Kurdish (Sorani), Arabic</td><td>Menus, panel headers and buttons. Kurdish and Arabic are shown right to left.</td></tr>
-  <tr><td>Theme</td><td>Dark Modern, Light Clean, Classic (ImGui), Windows Normal, Windows Classic</td><td>Colours of the whole interface. Windows Classic imitates the grey Windows 95&ndash;2000 look with navy title bars.</td></tr>
+  <tr><td>Theme</td><td>Dark Modern, Light Clean, Classic, Black &amp; White</td><td>Colours of the whole interface.</td></tr>
   <tr><td>Window controls</td><td>Classic, Modern</td><td>Style of the minimise, maximise and close buttons.</td></tr>
   <tr><td>Graphics GPU</td><td>Automatic, or a named graphics card</td><td>On laptops with two GPUs, choose the high-performance one for smooth rotation of large structures. Takes effect after a restart.</td></tr>
   <tr><td>Docking engine</td><td>CPU only; GPU (graphics chip); Hybrid (GPU + CPU)</td><td>What builds the receptor energy grids. The search itself always runs on the processor cores (<a href="#engine">section 9.6</a>).</td></tr>
@@ -442,11 +442,15 @@ writes the formula, weight, rotatable bonds, rings and logP to the terminal.</p>
   <tr><td>Zoom</td><td>Mouse wheel</td></tr>
   <tr><td>Move the docking box</td><td><kbd>Shift</kbd> + left-drag (docking workspace; locked during a run)</td></tr>
   <tr><td>Reset the camera</td><td><span class="ui">View &rsaquo; Reset Camera View</span></td></tr>
+  <tr><td>Fit everything shown in the view</td><td><span class="ui">View &rsaquo; Zoom to Fit</span></td></tr>
+  <tr><td>Look closely at the ligand</td><td><span class="ui">View &rsaquo; Center on Ligand</span></td></tr>
+  <tr><td>Look from the front, back, a side, the top or the bottom</td><td><span class="ui">View &rsaquo; View From</span></td></tr>
+  <tr><td>Turn the molecules slowly (presentations)</td><td><span class="ui">View &rsaquo; Spin</span></td></tr>
 </table></div>
 <h3>View menu</h3>
 <div class="table-wrap"><table>
   <tr><th>Protein style</th><th>Suited to</th></tr>
-  <tr><td>Rubber Ribbon (Cartoon)</td><td>Secondary structure; the default.</td></tr>
+  <tr><td>Rubber Ribbon (Cartoon)</td><td>Secondary structure.</td></tr>
   <tr><td>Spheres (CPK)</td><td>The shape of the pocket.</td></tr>
   <tr><td>Sticks, Ball &amp; Stick</td><td>Residues around the ligand.</td></tr>
   <tr><td>Sausage (Intestine)</td><td>A smooth backbone trace.</td></tr>
@@ -454,12 +458,13 @@ writes the formula, weight, rotatable bonds, rings and logP to the terminal.</p>
   <tr><td>Translucent Surface</td><td>Seeing the ligand through the surface.</td></tr>
   <tr><td>Gel Surface (Rubber + Ocean)</td><td>Coloured residues inside a clear shell.</td></tr>
   <tr><td>Ligand Editor (Glossy Atoms)</td><td>The glossy look of the ligand editor.</td></tr>
+  <tr><td>Prototype (QuarkSuit)</td><td>Glass sticks sized by element: a bond is as thick as its bigger atom (C&ndash;N a little thicker than C&ndash;C, S and Cl clearly thicker), bonds to hydrogen stay thin. The default.</td></tr>
 </table></div>
 <p>Surfaces are computed in the background the first time they are chosen. <span class="ui">Style Options</span>
 holds the settings of the current style.</p>
 <ul>
   <li><b>Protein Color:</b> CPK Atom Type, Solid Color, B-Factor Heat, Residue Type.</li>
-  <li><b>Ligand Style:</b> Ribbon, Spheres (CPK), Sticks, Ball &amp; Stick, Ligand Editor (Glossy Atoms). <b>Ligand Color:</b> CPK Atom Type, Solid Color, Charge Heat (partial charges from red through white to blue; grey where unassigned).</li>
+  <li><b>Ligand Style:</b> Ribbon, Spheres (CPK), Sticks, Ball &amp; Stick, Ligand Editor (Glossy Atoms), Prototype (QuarkSuit). <b>Ligand Color:</b> CPK Atom Type, Solid Color, Charge Heat (partial charges from red through white to blue; grey where unassigned).</li>
   <li><b>Water Display:</b> Hidden, Spheres, Ball &amp; stick, Sticks.</li>
   <li><b>Modern Shader (Glossy)</b>, <b>Black Outlines</b>, and <b>Show Box Faces</b> (fills the sides of the docking box).</li>
 </ul>
@@ -627,20 +632,20 @@ a flipped symmetric ring counts as the same pose.</p>
 models opens as one object per model.</p>
 <ul>
   <li>Each object is split into chains, ligands, ions and water, each with an eye icon to show or hide it; the waste-bin icon removes an object.</li>
-  <li>Click items to select them (<kbd>Ctrl</kbd>+click for several); double-click to zoom to one. <span class="ui">Zoom to selection</span>, <span class="ui">Show only selected</span>, <span class="ui">Hide</span>, <span class="ui">Show</span>, <span class="ui">Delete selected</span>, <span class="ui">Clear selection</span> and <span class="ui">Show all</span> act on the selection.</li>
+  <li>Click items to select them (<kbd>Ctrl</kbd>+click for several); double-click to zoom to one. The <span class="ui">Edit</span> menu, or a right-click on an item, acts on the selection: <span class="ui">Select All</span>, <span class="ui">Select</span> by kind (chains, ligands, ions, water), <span class="ui">Invert Selection</span>, <span class="ui">Clear Selection</span>, <span class="ui">Zoom to Selection</span>, <span class="ui">Show Only Selected</span>, <span class="ui">Show Selected</span>, <span class="ui">Hide Selected</span>, <span class="ui">Show All</span> and <span class="ui">Delete Selected</span>.</li>
   <li>Select a ligand, and optionally chains, set <span class="ui">Contact distance</span> and click <span class="ui">Show interactions</span>.</li>
   <li>The View and Tools menus and image export work as in the docking workspace. Visualization keeps its own undo history.</li>
 </ul>
 <p class="back"><a href="#contents">Contents</a></p>
 
-<h2 id="m-editor">15. The ligand editor</h2>
-<p><span class="ui">LIGAND OPTIMIZATION</span> opens the editor: a molecule library on the left, the 2D drawing
+<h2 id="m-editor">15. Small molecule design</h2>
+<p><span class="ui">DESIGN SMALL MOLECULES</span> opens the editor: a molecule library on the left, the 2D drawing
 and the 3D view side by side, and status and log lines below. Both views show the same molecule; an edit in
 one appears in the other.</p>
 <h3>Menus</h3>
 <div class="table-wrap"><table>
   <tr><td>File</td><td>New molecule, Open molecule, Molecule format, Add H on save, Save molecule, Export 2D image, Export 3D image, Image scale, Image format and size, Home.</td></tr>
-  <tr><td>Edit</td><td>Undo, Redo, Delete selection, Deselect, Clean 2D, Hydrogens (add all, add polar, remove, show), Fit views, Reset 3D view, Atom labels, Atom colors, Background.</td></tr>
+  <tr><td>Edit</td><td>Undo, Redo, Copy SMILES <kbd>Ctrl+C</kbd>, Paste SMILES <kbd>Ctrl+V</kbd>, Copy 2D image, Copy 3D image, Delete selection, Deselect, Clean 2D, Hydrogens (add all, add polar, remove, show), Fit views, Reset 3D view, 3D style (the Docking tab&rsquo;s ligand styles: Spheres (CPK), Sticks, Ball &amp; Stick, Ligand Editor (Glossy Atoms), Prototype (QuarkSuit)), Atom labels, Atom colors, Background.</td></tr>
   <tr><td>Minimization</td><td>Force field, algorithm, steps and tolerance; Rebuild 3D from the drawing first; Minimize; Cancel operation; Show last energy graph.</td></tr>
   <tr><td>Help</td><td>Command Guide (<kbd>F1</kbd>).</td></tr>
 </table></div>

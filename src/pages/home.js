@@ -13,7 +13,7 @@ export const home = {
     <p class="hero-desc">Prepare proteins and ligands, dock them into a binding site, and study every
     contact in 3D and in a 2D interaction map, all in one program for Windows.</p>
     <p class="hero-links"><a class="hero-button" href="#download">Download QuarkSuit v1</a>
-    <span class="hero-more"><a href="#tutorial">Tutorial</a> &middot; <a href="#manual">Manual</a></span></p>
+    <span class="hero-more"><a href="#tutorial">Tutorial</a> &middot; <a href="#documentation">Documentation</a></span></p>
   </div>
 </section>
 
@@ -26,7 +26,7 @@ administrator rights and no other programs: the docking engine and the chemistry
 are part of the installation.</p>
 
 <p><b>Current version:</b> QuarkSuit v1 (1.0) for Windows 10 and 11, 64-bit.
-&nbsp;<a href="#download">Download</a> &middot; <a href="#tutorial">Tutorial</a> &middot; <a href="#manual">Manual</a></p>
+&nbsp;<a href="#download">Download</a> &middot; <a href="#tutorial">Tutorial</a> &middot; <a href="#documentation">Documentation</a></p>
 
 <h2>What it does</h2>
 <dl>

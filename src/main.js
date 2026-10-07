@@ -1,5 +1,6 @@
 /* QuarkSuit website: page frame, menu bar and hash routing.
-   A link such as #manual/docking opens the Manual at the element with id "docking". */
+   A link such as #documentation/d-score opens the Documentation at the element with id "d-score".
+   Old #manual links open the Documentation. */
 
 import './site.css';
 import { pages } from './pages/index.js';
@@ -8,12 +9,13 @@ const MENU = [
   ['home', 'Home'],
   ['download', 'Download'],
   ['tutorial', 'Tutorial'],
-  ['manual', 'Manual'],
+  ['documentation', 'Documentation'],
   ['faq', 'FAQ'],
   ['citing', 'Citing'],
   ['people', 'People'],
 ];
-const UPDATED = '27 September 2026';
+const UPDATED = '7 October 2026';
+const ALIAS = { manual: 'documentation' };
 
 const app = document.getElementById('app');
 app.innerHTML = `
@@ -36,7 +38,8 @@ const content = document.getElementById('content');
 
 function show() {
   const [name, anchor] = decodeURIComponent(location.hash.replace(/^#/, '')).split('/');
-  const id = pages[name] ? name : 'home';
+  const known = pages[name] ? name : ALIAS[name];
+  const id = known || 'home';
   const page = pages[id];
   content.innerHTML = page.render();
   document.title = id === 'home' ? 'QuarkSuit - molecular docking for Windows' : `${page.title} - QuarkSuit`;

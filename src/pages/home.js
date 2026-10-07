@@ -12,7 +12,7 @@ export const home = {
     <p class="hero-headline">Structure-based drug design on your own computer</p>
     <p class="hero-desc">Prepare proteins and ligands, dock them into a binding site, and study every
     contact in 3D and in a 2D interaction map, all in one program for Windows.</p>
-    <p class="hero-links"><a class="hero-button" href="#download">Download QuarkSuit v1</a>
+    <p class="hero-links"><a class="hero-button" href="#download">Download: not available yet</a>
     <span class="hero-more"><a href="#tutorial">Tutorial</a> &middot; <a href="#documentation">Documentation</a></span></p>
   </div>
 </section>
@@ -61,10 +61,10 @@ box of 20&ndash;24&nbsp;&Aring; centred on the ligand):</p>
   <tr><th>Structure</th><th>Ligand</th><th class="num">Best affinity</th><th class="num">RMSD of pose 1</th><th>Notes</th></tr>
   <tr><td>1STP streptavidin</td><td>biotin</td><td class="num">&minus;7.75 kcal/mol</td><td class="num">0.67 &Aring;</td><td>Prepared entirely in QuarkSuit, as in the <a href="#tutorial">tutorial</a>.</td></tr>
   <tr><td>1STP streptavidin</td><td>biotin</td><td class="num">&minus;7.52 kcal/mol</td><td class="num">0.58 &Aring;</td><td>Receptor and ligand prepared with AutoDockTools (AutoDock-GPU test set).</td></tr>
-  <tr><td>4ASD VEGFR2</td><td>sorafenib</td><td class="num">&ndash;</td><td class="num">0.55 &Aring;</td><td>AutoDock Vina 1.2 gives 0.59 &Aring; on the same input.</td></tr>
+  <tr><td>4ASD VEGFR2</td><td>sorafenib</td><td class="num">&minus;12.27 kcal/mol</td><td class="num">0.57 &Aring;</td><td>Prepared in QuarkSuit. AutoDock Vina 1.2.7 gives &minus;12.23 kcal/mol and 0.54 &Aring; on the same input.</td></tr>
   <tr><td>4WMY intelectin-1</td><td>allyl galactofuranoside</td><td class="num">&ndash;</td><td class="num">about 2.8 &Aring;</td><td>Not reproduced. The ligand's hydroxyl groups coordinate a calcium ion, which the Vina function describes only roughly, so the crystal pose does not score best. A limit of the scoring function, not of the search.</td></tr>
 </table></div>
-<p class="small muted">On the same pose QuarkSuit gives the same affinity as AutoDock Vina 1.2. Docking is
+<p class="small muted">On the same pose QuarkSuit gives the same affinity as AutoDock Vina 1.2, except where a sulfur atom accepts a hydrogen bond, which QuarkSuit scores and Vina does not (<a href="#documentation/sulfur">why</a>). Docking is
 a prediction: check your own system by redocking a known ligand before screening new ones.</p>
 
 <h2>Citing</h2>

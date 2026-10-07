@@ -221,11 +221,11 @@ file contains before they load it.</p>
 so bond orders are kept; a receptor as PDB, so residues are kept). From a file with several models (a docking output), the
 first is taken. How bonds and bond orders are recovered from files that do not store them is described in
 ${link('d-perception')}.</p>
-<div class="note"><b>Docking needs AutoDock atom types.</b> The docking score reads each atom's AutoDock type, which only a
-PDBQT file stores. Dock receptors and ligands prepared by QuarkSuit (or another preparation program) and saved as PDBQT. A
-receptor or ligand loaded from PDB, SDF, MOL2 or mmCIF and docked unprepared is scored with bare element types: its oxygen and
-nitrogen atoms are then not recognised as hydrogen-bond acceptors, nor its N&ndash;H and O&ndash;H groups as donors
-(${link('d-score')}).</div>
+<div class="note"><b>Atom types for docking.</b> The docking score reads each atom's AutoDock type (${link('d-types')}), which
+only a PDBQT file stores. When a receptor or ligand comes from a file without them (PDB, mmCIF, SDF, MOL2), QuarkSuit assigns them
+from the structure when docking starts, with the same rules as a PDBQT export, and says so in the terminal. Hydrogen-bond donors are
+found from polar hydrogens, so a structure without hydrogens has none: prepare it first (${link('d-prep-protein')},
+${link('d-prep-ligand')}). Preparing and saving as PDBQT remains the best way to know exactly what is docked.</div>
 ${back}
 
 ${head('d-properties')}
@@ -366,8 +366,8 @@ ${head('d-docking')}
 <p>Open <span class="ui">DOCKING</span> and work down the side panel.</p>
 
 <h3>Inputs</h3>
-<p>Load the prepared receptor and ligand, both as PDBQT (see the note in ${link('d-loading')}). The ligand must be one connected
-molecule. Its torsion tree is taken from the PDBQT file when the ligand is unchanged since loading; otherwise QuarkSuit builds the
+<p>Load the prepared receptor and ligand, preferably as PDBQT; files without docking atom types are typed automatically (see the
+note in ${link('d-loading')}). The ligand must be one connected molecule. Its torsion tree is taken from the PDBQT file when the ligand is unchanged since loading; otherwise QuarkSuit builds the
 tree from the bonds (${link('d-types')}). The number of torsions is written in the terminal at the start of the run.</p>
 
 <h3>The search box</h3>
@@ -737,7 +737,8 @@ ${head('d-types')}
   <tr><td>N</td><td>Nitrogen whose lone pair is not available: cationic, four-connected, or planar three-connected (amide, aniline, pyrrole, sulfonamide).</td></tr>
   <tr><td>OA</td><td>Oxygen (always an acceptor).</td></tr>
   <tr><td>SA, S</td><td>Sulfur: SA for a thioether, thiol or thiolate (two or fewer neighbours, no double bond, or negative); S otherwise (sulfone, sulfonamide).</td></tr>
-  <tr><td>HD, H</td><td>Hydrogen on N, O or S (a polar hydrogen, a donor), or on carbon.</td></tr>
+  <tr><td>HD, H</td><td>Hydrogen on N, O or S (a polar hydrogen, a donor), or on carbon. Files from other programs may also use
+  NS and OS (spherical nitrogen and oxygen acceptors) and HS (spherical polar hydrogen); QuarkSuit reads them as NA, OA and HD.</td></tr>
   <tr><td>P, F, Cl, Br, I, metals</td><td>The element symbol.</td></tr>
 </table></div>
 <h3 id="torsion-tree">The torsion tree</h3>
@@ -906,10 +907,10 @@ partial charges are not part of it.</p>
 polar hydrogens only decide which atoms donate.</p>
 <div class="table-wrap"><table>
   <tr><th>Atom</th><th class="num">Radius <i>R</i> (&Aring;)</th><th>Hydrophobic</th><th>Donor</th><th>Acceptor</th></tr>
-  <tr><td>C, A</td><td class="num">1.9</td><td>yes, unless bonded to N, O, P or S</td><td></td><td></td></tr>
+  <tr><td>C, A</td><td class="num">1.9</td><td>yes, unless bonded to a heteroatom (N, O, S, P, a halogen or a metal)</td><td></td><td></td></tr>
   <tr><td>N, NA</td><td class="num">1.8</td><td></td><td>if bonded to an HD</td><td>NA</td></tr>
   <tr><td>O, OA</td><td class="num">1.7</td><td></td><td>if bonded to an HD</td><td>OA</td></tr>
-  <tr><td>S, SA</td><td class="num">2.0</td><td></td><td></td><td>SA</td></tr>
+  <tr><td>S, SA</td><td class="num">2.0</td><td></td><td></td><td>SA (see below)</td></tr>
   <tr><td>P</td><td class="num">2.1</td><td></td><td></td><td></td></tr>
   <tr><td>F, Cl, Br, I</td><td class="num">1.5, 1.8, 2.0, 2.2</td><td>yes</td><td></td><td></td></tr>
   <tr><td>Zn, Fe, Mg, Mn, Ca, Cu, Co, Ni, Na, K</td><td class="num">1.2</td><td></td><td>yes</td><td></td></tr>
@@ -953,9 +954,40 @@ ${eq(21, `<msub><mi>A</mi><mi>k</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>I</m
 <p>so pose 1 shows its intermolecular score, and every other pose also carries its internal strain relative to pose 1: a strained pose
 cannot outrank a relaxed one, and the list stays in the order of the energy the search minimised. The final poses are scored with the exact
 pair sums, not the grids.</p>
-<div class="note"><b>Differences from AutoDock Vina 1.2's typing.</b> QuarkSuit also treats the AutoDock types SA, NS and OS as acceptors,
-where Vina treats only OA and NA as acceptors; and it makes a carbon polar (not hydrophobic) only when it is bonded to N, O, P or S, where
-Vina also counts halogens and metals. On poses without such atoms in contact, QuarkSuit gives the same affinity as Vina 1.2.</div>
+<h3 id="sulfur">Where QuarkSuit differs from AutoDock Vina 1.2: sulfur acceptors</h3>
+<p>QuarkSuit scores one interaction that Vina 1.2 does not: a hydrogen bond to a divalent sulfur (AutoDock type SA &mdash; the sulfur of
+methionine, of a cysteine thiol or thiolate, of a thioether or a thiophene). Vina treats sulfur as never accepting a hydrogen bond;
+AutoDock&nbsp;4 treats SA as an acceptor with one fifth of oxygen's hydrogen-bond well depth (Huey <i>et al.</i>, 2007). QuarkSuit gives SA
+the full hydrogen-bond term:</p>
+<ul>
+  <li>N&ndash;H&middot;&middot;&middot;S hydrogen bonds to the sulfur of methionine and cysteine were measured, by gas-phase spectroscopy and
+  high-level calculations, to be as strong as conventional hydrogen bonds (Mundlapati <i>et al.</i>, 2015). A survey of 500 protein
+  structures found them less common and more distorted than bonds to oxygen (Zhou <i>et al.</i>, 2009), which agrees with how rarely the
+  rule matters below.</li>
+  <li>Where it matters, the crystal shows the contact: in 3K5V the ligand's N&ndash;H points at Met309 S&delta; (N&middot;&middot;&middot;S
+  3.31&nbsp;&Aring;, H&middot;&middot;&middot;S 2.73&nbsp;&Aring;), in 3CS9 at Met290 S&delta; (N&middot;&middot;&middot;S 3.38&nbsp;&Aring;), and
+  in 1STP the biotin sulfur lies next to Thr90's hydroxyl.</li>
+  <li>Redocking was better or equal with the rule (below).</li>
+</ul>
+<p>The test used 96 co-crystal complexes from the PDB (most of the Astex Diverse Set, Hartshorn <i>et al.</i>, 2007, and other drug complexes),
+prepared with QuarkSuit at pH&nbsp;7.4 and redocked at thoroughness 8 from random starting orientations, with the top pose's RMSD from the
+crystal measured as in ${link('d-rmsd')}. The sulfur rule changed the score of the crystal pose by 0.1&nbsp;kcal/mol or more in five of
+them:</p>
+<div class="table-wrap"><table>
+  <tr><th>Complex</th><th>Sulfur contact</th><th class="num">Runs within 2&nbsp;&Aring;, with the rule</th><th class="num">without it</th></tr>
+  <tr><td>1STP streptavidin&ndash;biotin</td><td>Thr90 O&ndash;H &middot;&middot;&middot; ligand S</td><td class="num">8 of 8 (mean 0.55&nbsp;&Aring;)</td><td class="num">8 of 8 (mean 0.71&nbsp;&Aring;)</td></tr>
+  <tr><td>3K5V Abl&ndash;imatinib</td><td>ligand N&ndash;H &middot;&middot;&middot; Met309 S</td><td class="num">5 of 7</td><td class="num">3 of 7</td></tr>
+  <tr><td>3CS9 Abl&ndash;nilotinib</td><td>ligand N&ndash;H &middot;&middot;&middot; Met290 S</td><td class="num">2 of 2</td><td class="num">2 of 2</td></tr>
+  <tr><td>2W26 factor Xa&ndash;rivaroxaban</td><td>ligand thiophene S</td><td class="num">2 of 2</td><td class="num">2 of 2</td></tr>
+  <tr><td>1HVY thymidylate synthase&ndash;raltitrexed</td><td>ligand thiophene S</td><td class="num">0 of 2</td><td class="num">0 of 2</td></tr>
+</table></div>
+<p>Where a sulfur accepts a hydrogen bond, QuarkSuit's affinity is more negative than Vina's by that bond's reward (0.1&ndash;0.4&nbsp;kcal/mol
+in these complexes). Everywhere else the two agree: the crystal poses of twelve of these complexes, scored by Vina 1.2.7 and by QuarkSuit,
+gave the same intermolecular energy within 0.02&nbsp;kcal/mol once the sulfur contacts were set aside.</p>
+<p>A carbon bonded to a halogen is typed as in Vina (polar). Keeping such carbons hydrophobic was tested on the 24 complexes where it changes
+the crystal pose's score: redocking was identical (40 of 48 runs within 2&nbsp;&Aring; either way, mean RMSD 1.17&nbsp;&Aring; both), and only the
+affinities became up to 0.8&nbsp;kcal/mol more negative than the fitted weights intend, so Vina's definition is used. QuarkSuit also reads
+the AutoDock&nbsp;4 types NS, OS (acceptors) and HS (polar hydrogen), which Vina 1.2 does not accept.</p>
 ${back}
 
 ${head('d-search')}
@@ -1124,8 +1156,8 @@ ${back}
 ${head('d-validation')}
 <p>Redocking a co-crystal ligand into its own receptor is the standard check of a docking setup; the top pose should lie within 2&nbsp;&Aring; of
 the crystal position. Results measured with QuarkSuit v1 are on the <a href="#home">home page</a>, and the <a href="#tutorial">tutorial</a>
-reproduces the first of them. On the same pose and inputs, QuarkSuit's affinities agree with AutoDock Vina 1.2 (see the note in
-${link('d-score')}); on a 4-thread laptop processor its search was faster than Vina's on the two systems timed (33 against 51&nbsp;s and 56 against
+reproduces the first of them. On the same pose and inputs, QuarkSuit's affinities agree with AutoDock Vina 1.2 within 0.02&nbsp;kcal/mol,
+except where a sulfur accepts a hydrogen bond (${link('d-score')}, where the redocking test of the atom-typing rules is also described); on a 4-thread laptop processor its search was faster than Vina's on the two systems timed (33 against 51&nbsp;s and 56 against
 93&nbsp;s), which is not a general benchmark.</p>
 <h3>Limits to keep in mind</h3>
 <ul>
@@ -1204,6 +1236,10 @@ ${head('d-refs')}
 <ol>
   <li>O. Trott, A. J. Olson. AutoDock Vina: improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. <i>J. Comput. Chem.</i> 31, 455&ndash;461 (2010).</li>
   <li>J. Eberhardt, D. Santos-Martins, A. F. Tillack, S. Forli. AutoDock Vina 1.2.0: new docking methods, expanded force field, and Python bindings. <i>J. Chem. Inf. Model.</i> 61, 3891&ndash;3898 (2021).</li>
+  <li>R. Huey, G. M. Morris, A. J. Olson, D. S. Goodsell. A semiempirical free energy force field with charge-based desolvation. <i>J. Comput. Chem.</i> 28, 1145&ndash;1152 (2007).</li>
+  <li>V. R. Mundlapati, S. Ghosh, A. Bhattacherjee, P. Tiwari, H. S. Biswal. Critical assessment of the strength of hydrogen bonds between the sulfur atom of methionine/cysteine and backbone amides in proteins. <i>J. Phys. Chem. Lett.</i> 6, 1385&ndash;1389 (2015).</li>
+  <li>P. Zhou, F. Tian, F. Lv, Z. Shang. Geometric characteristics of hydrogen bonds involving sulfur atoms in proteins. <i>Proteins</i> 76, 151&ndash;163 (2009).</li>
+  <li>M. J. Hartshorn <i>et al.</i> Diverse, high-quality test set for the validation of protein&ndash;ligand docking performance. <i>J. Med. Chem.</i> 50, 726&ndash;741 (2007).</li>
   <li>J. Gasteiger, M. Marsili. Iterative partial equalization of orbital electronegativity: a rapid access to atomic charges. <i>Tetrahedron</i> 36, 3219&ndash;3228 (1980).</li>
   <li>A. K. Rapp&eacute;, C. J. Casewit, K. S. Colwell, W. A. Goddard III, W. M. Skiff. UFF, a full periodic table force field for molecular mechanics and molecular dynamics simulations. <i>J. Am. Chem. Soc.</i> 114, 10024&ndash;10035 (1992).</li>
   <li>T. A. Halgren. Merck molecular force field. I. Basis, form, scope, parameterization, and performance of MMFF94. <i>J. Comput. Chem.</i> 17, 490&ndash;519 (1996).</li>

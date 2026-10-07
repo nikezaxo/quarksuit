@@ -191,7 +191,7 @@ mtd { text-align: left; }
 .download-box { border: 1px solid var(--rule); background: rgba(255, 252, 240, .6); padding: 12px 18px; margin: 12px 0 18px;
   display: flex; align-items: center; gap: 18px; }
 .download-box .os-logo { flex: none; }
-.download-box a.file { font-size: 19px; }
+.download-box .file { font-size: 19px; }
 
 /* ---------------------------------------------------------------- narrow screens */
 @media (max-width: 760px) {

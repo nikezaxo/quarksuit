@@ -1,5 +1,14 @@
 const windowsLogo = `<svg class="os-logo" viewBox="0 0 88 88" width="52" height="52" role="img" aria-label="Windows"><path fill="#0078d4" d="M0 0h42v42H0zM46 0h42v42H46zM0 46h42v42H0zM46 46h42v42H46z"/></svg>`;
-const packageIcon = `<svg class="os-logo" viewBox="0 0 88 88" width="52" height="52" role="img" aria-label="Ubuntu package"><path fill="none" stroke="#b35a1f" stroke-width="6" stroke-linejoin="round" d="M44 6 80 24v40L44 82 8 64V24zM8 24l36 18 36-18M44 42v40"/></svg>`;
+const linuxLogo = `<svg class="os-logo" viewBox="0 0 88 88" width="52" height="52" role="img" aria-label="Linux (Ubuntu)">
+  <ellipse cx="22" cy="54" rx="6.5" ry="17" transform="rotate(18 22 54)" fill="#1d1d1f"/>
+  <ellipse cx="66" cy="54" rx="6.5" ry="17" transform="rotate(-18 66 54)" fill="#1d1d1f"/>
+  <path fill="#1d1d1f" d="M44 6c-10 0-17 8-17 18 0 4 1 7 2 10-6 6-10 14-10 24 0 14 11 24 25 24s25-10 25-24c0-10-4-18-10-24 1-3 2-6 2-10 0-10-7-18-17-18z"/>
+  <path fill="#fff" d="M44 34c-9 0-15 10-15 23 0 12 7 20 15 20s15-8 15-20c0-13-6-23-15-23z"/>
+  <ellipse cx="38.5" cy="22" rx="5" ry="6.5" fill="#fff"/><ellipse cx="49.5" cy="22" rx="5" ry="6.5" fill="#fff"/>
+  <circle cx="39.5" cy="23" r="2.4" fill="#1d1d1f"/><circle cx="48.5" cy="23" r="2.4" fill="#1d1d1f"/>
+  <path fill="#f2a516" d="M35.5 30.5c4-2.6 13-2.6 17 0-2.6 4.6-14.4 4.6-17 0z"/>
+  <ellipse cx="32" cy="82" rx="10" ry="4.6" fill="#f2a516"/><ellipse cx="56" cy="82" rx="10" ry="4.6" fill="#f2a516"/>
+</svg>`;
 
 export const download = {
   title: 'Download',
@@ -28,7 +37,7 @@ three editions with the same features; choose the one for your operating system.
 </div>
 
 <div class="download-box">
-  ${packageIcon}
+  ${linuxLogo}
   <div>
     <span class="file">QuarkSuit-2026-Ubuntu-amd64.deb</span><br>
     QuarkSuit 2026 for Ubuntu 22.04 or newer (24.04, 26.04 and the releases between them), 64-bit.<br>

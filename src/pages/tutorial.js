@@ -15,7 +15,7 @@ checking the result against the crystal. Streptavidin&ndash;biotin (PDB <a href=
 Weber <i>et al.</i>, <i>Science</i> 243, 85&ndash;88, 1989) is a good first system: the complex is
 tight, the ligand small, and a correct pose is easy to recognise.</p>
 
-<p>Every figure below is a screenshot of QuarkSuit v1 taken during an actual run of these
+<p>Every figure below is a screenshot of QuarkSuit 2026 taken during an actual run of these
 steps. Allow about fifteen minutes.</p>
 
 <div class="toc">
@@ -75,22 +75,24 @@ mistake, the pocket was already filled: the best pose scored only &minus;4.3 kca
 <ol>
   <li><span class="ui">1. Remove waters</span> &ndash; ticked. There is no metal ion here, so
   <span class="ui">Keep waters bound to metal ions</span> makes no difference.</li>
-  <li><span class="ui">2. Add hydrogens</span> &ndash; ticked, <span class="ui">Hydrogen type</span>
+  <li><span class="ui">2. Rebuild missing heavy atoms</span> &ndash; not needed: the report found no missing
+  side-chain atoms.</li>
+  <li><span class="ui">3. Add hydrogens</span> &ndash; ticked, <span class="ui">Hydrogen type</span>
   <span class="ui">Polar only (docking)</span>.</li>
   <li><span class="ui">Use selected pH</span> &ndash; ticked, pH 7.40. Asp and Glu become charged,
   Lys and Arg protonated, and the chain ends charged.</li>
-  <li><span class="ui">3. Minimize geometry</span> &ndash; not needed for a crystal structure.</li>
-  <li><span class="ui">4. Partial charges</span> &ndash; ticked, <span class="ui">Charge model</span> <span class="ui">Gasteiger</span>.</li>
+  <li><span class="ui">4. Minimize geometry</span> &ndash; not needed for a crystal structure.</li>
+  <li><span class="ui">5. Partial charges</span> &ndash; ticked, <span class="ui">Charge model</span> <span class="ui">Gasteiger</span>.</li>
 </ol>
-${fig(4, '03-prep-options.png', 'Preparation options for the receptor. The explanation under each option changes with the choice.')}
+${fig(4, '03-prep-options.png', 'Preparation options for the receptor. Pointing at the attention icon beside an option explains it.')}
 <p>Click <span class="ui">Proceed</span> at the end of the options. A progress window follows the
 steps (figure 5); the work runs in the background and <span class="ui">Cancel</span> stops it
 without changing the protein.</p>
 <figure id="fig5">
-  <img src="tutorial/prep-progress.gif" loading="lazy" width="396" height="304" alt="Protein preparation progress window">
+  <img src="tutorial/prep-progress.gif" loading="lazy" width="396" height="352" alt="Protein preparation progress window">
   <figcaption><b>Figure 5.</b> The protein preparation window during the run (recorded, shown at real speed).</figcaption>
 </figure>
-<p>When it finishes, the report updates (figure 6): <b>Polar hydrogens only</b>, <b>Gasteiger
+<p>When it finishes, the report updates (figure 6): <b>Polar hydrogens only</b>, <b>Partial
 charges</b>, 213 polar hydrogens and no waters. Save the receptor with
 <span class="ui">Save prepared protein &rsaquo; PDBQT</span> as <code>1stp_receptor.pdbqt</code>.
 PDBQT keeps the partial charges and AutoDock atom types; PDB would not.</p>
@@ -111,24 +113,25 @@ as <code>btn_crystal.pdb</code>. It is the experimental position the docked pose
 <span class="ui">1. Add hydrogens</span> with <span class="ui">Polar only (docking)</span>,
 <span class="ui">Use selected pH</span> at 7.40, and <span class="ui">3. Assign Gasteiger charges</span>.
 Click <span class="ui">Proceed</span>.</p>
-${fig(8, '07-ligand-prepared.png', 'The ligand after preparation. Biotin\'s carboxylic acid is ionised at pH 7.4, so the ligand has a net charge of -1 and two polar hydrogens, on the ureido nitrogens.')}
+${fig(8, '07-ligand-prepared.png', 'The ligand after preparation, shown beside the protein. Biotin\'s carboxylic acid is ionised at pH 7.4, so the ligand has a net charge of -1 and two polar hydrogens, on the ureido nitrogens. Glows mark what changed: green an added hydrogen, orange a removed one, white-yellow a changed charge.')}
 <p>Save it with <span class="ui">Save prepared ligand &rsaquo; PDBQT</span> as <code>btn_ligand.pdbqt</code>.
 The PDBQT file also holds the torsion tree: biotin has 5 rotatable bonds.</p>
 
 <h2 id="t-dock">7. Setting up the docking</h2>
-<p>Click <span class="ui">&laquo; HOME</span>. QuarkSuit asks whether to close the preparation
-session; you have saved both files, so answer <span class="ui">Yes</span>. Then click
-<span class="ui">NEW DOCKING PROJECT</span>. Load <code>1stp_receptor.pdbqt</code> with
+<p>Choose <span class="ui">File &rsaquo; Home</span>. QuarkSuit asks whether to close the current
+project; you have saved both files, so answer <span class="ui">Yes</span>. Then click
+<span class="ui">DOCKING</span>. Load <code>1stp_receptor.pdbqt</code> with
 <span class="ui">Load Protein</span> and <code>btn_ligand.pdbqt</code> with
-<span class="ui">Load Ligand</span>.</p>
+<span class="ui">Load Ligand</span>. To see the ligand and the box clearly, choose
+<span class="ui">View &rsaquo; Protein Style &rsaquo; Rubber Ribbon (Cartoon)</span>.</p>
 <p>The search box goes over the binding site. The ligand is still in its crystal position, so
 its centre is the right place: the Molecule Properties window of the ligand gives it as
 (11.3, 1.4, &minus;10.5)&nbsp;&Aring;. In <span class="ui">2. Grid Box</span> enter this as
 <span class="ui">Center</span> and 20&nbsp;&Aring; for each <span class="ui">Size</span>.
 Double-click a field to type a value.</p>
 ${fig(9, '08-docking-setup.png', 'Receptor, ligand and the 20 &times; 20 &times; 20 &Aring; box. The ligand lies inside the box.')}
-<p>Leave <span class="ui">4. Docking Configuration</span> at its defaults: Exhaustiveness 8,
-Num Poses 9, Energy Range 3.0&nbsp;kcal/mol. Click <span class="ui">START DOCKING</span>. The panel
+<p>Leave <span class="ui">4. Docking Configuration</span> at its defaults: Thoroughness 8,
+Num Poses 9, Score Tolerance 3.0&nbsp;kcal/mol. Click <span class="ui">START DOCKING</span>. The panel
 is locked during the run, and a progress window shows the stage (figure 10).</p>
 ${fig(10, '09-docking-running.png', 'Docking in progress. The terminal reports the number of rotatable bonds and, later, how the energy grids were built.')}
 

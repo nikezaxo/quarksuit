@@ -13,7 +13,7 @@ computational chemistry and molecular modelling group of the Department of Chemi
   ${person('hyder.jpeg', 'Dr. Haydar A Mohammad-salim', 'Ph.D. in Computational Chemistry')}
   ${person('shinwar.jpeg', 'Dr. Shinwar A Idrees', 'Ph.D. in Physical Chemistry')}
   ${person('Dlzhar.png', 'Mr. Dilzhar S Mohammed', 'M.Sc. in Physical Chemistry')}
-  ${person('nihad.jpeg', 'Mr. Nihad R.', 'Research Assistant; develops and maintains QuarkSuit')}
+  ${person('nihad.jpg', 'Mr. Nihad R.', 'Research Assistant; develops and maintains QuarkSuit')}
   ${person('ahmad.jpeg', 'Ahmad KH', 'Research Assistant')}
 </div>
 

@@ -14,7 +14,7 @@ const MENU = [
   ['citing', 'Citing'],
   ['people', 'People'],
 ];
-const UPDATED = '7 October 2026';
+const UPDATED = '16 October 2026';
 const ALIAS = { manual: 'documentation' };
 
 const app = document.getElementById('app');
@@ -22,7 +22,7 @@ app.innerHTML = `
   <div class="page">
     <header class="masthead">
       <div class="title"><a href="#home"><img class="logo" src="logo.png" alt="" width="60" height="60">QuarkSuit</a></div>
-      <div class="subtitle">molecular docking, structure preparation and ligand design for Windows</div>
+      <div class="subtitle">molecular docking, structure preparation and ligand design for Windows and Ubuntu</div>
       <div class="org">TCCG Center &middot; University of Zakho</div>
     </header>
     <nav class="menubar">
@@ -30,7 +30,7 @@ app.innerHTML = `
     </nav>
     <main class="content" id="content"></main>
     <footer class="footer">
-      QuarkSuit v1 &middot; TCCG Center, University of Zakho &middot; this page was last updated on ${UPDATED}
+      QuarkSuit 2026 &middot; TCCG Center, University of Zakho &middot; this page was last updated on ${UPDATED}
     </footer>
   </div>`;
 
@@ -42,7 +42,7 @@ function show() {
   const id = known || 'home';
   const page = pages[id];
   content.innerHTML = page.render();
-  document.title = id === 'home' ? 'QuarkSuit - molecular docking for Windows' : `${page.title} - QuarkSuit`;
+  document.title = id === 'home' ? 'QuarkSuit - molecular docking for Windows and Ubuntu' : `${page.title} - QuarkSuit`;
   document.querySelectorAll('.menubar a').forEach(a => a.classList.toggle('current', a.dataset.page === id));
   const target = anchor && document.getElementById(anchor);
   if (target) target.scrollIntoView();

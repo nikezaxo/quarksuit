@@ -15,8 +15,9 @@ dist-ssr
 # Not part of the website
 tccglab-main/
 www.schrodinger.com.txt
-# The installer goes in a GitHub Release, not in the repository
+# The installers go in a GitHub Release, not in the repository
 public/downloads/*.exe
+public/downloads/*.deb
 
 # Editor directories and files
 .vscode/*

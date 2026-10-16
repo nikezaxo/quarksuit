@@ -11,21 +11,21 @@ export const home = {
     <img class="hero-logo" src="logo-256.png" width="96" height="96" alt="QuarkSuit logo">
     <p class="hero-headline">Structure-based drug design on your own computer</p>
     <p class="hero-desc">Prepare proteins and ligands, dock them into a binding site, and study every
-    contact in 3D and in a 2D interaction map, all in one program for Windows.</p>
+    contact in 3D and in a 2D interaction map, all in one program for Windows and Ubuntu.</p>
     <p class="hero-links"><a class="hero-button" href="#download">Download: not available yet</a>
     <span class="hero-more"><a href="#tutorial">Tutorial</a> &middot; <a href="#documentation">Documentation</a></span></p>
   </div>
 </section>
 
-<p class="lead">QuarkSuit is a Windows program for structure-based drug design. It prepares a
+<p class="lead">QuarkSuit is a program for structure-based drug design on Windows and Ubuntu. It prepares a
 protein receptor and a ligand, docks the ligand into a binding site with a built-in engine
 that uses the AutoDock Vina scoring function, and helps you study and report the result.</p>
 
-<p>Everything runs on your own computer. QuarkSuit needs no internet connection, no
-administrator rights and no other programs: the docking engine and the chemistry toolkit
-are part of the installation.</p>
+<p>Everything runs on your own computer. QuarkSuit needs no internet connection and no
+other programs: the docking engine and the chemistry toolkit are part of the installation.
+On Windows it installs without administrator rights.</p>
 
-<p><b>Current version:</b> QuarkSuit v1 (1.0) for Windows 10 and 11, 64-bit.
+<p><b>Current version:</b> QuarkSuit 2026, for Windows 10 and 11, Windows 7, 8 and 8.1, and Ubuntu 22.04 or newer (64-bit).
 &nbsp;<a href="#download">Download</a> &middot; <a href="#tutorial">Tutorial</a> &middot; <a href="#documentation">Documentation</a></p>
 
 <h2>What it does</h2>
@@ -55,7 +55,7 @@ are part of the installation.</p>
 
 <h2 class="clear">Redocking results</h2>
 <p>Redocking puts a crystal ligand back into its own receptor; the top pose should lie within
-2&nbsp;&Aring; of the crystal position. Results measured with QuarkSuit v1 (exhaustiveness 8,
+2&nbsp;&Aring; of the crystal position. Results measured with QuarkSuit 2026 (exhaustiveness 8,
 box of 20&ndash;24&nbsp;&Aring; centred on the ligand):</p>
 <div class="table-wrap"><table>
   <tr><th>Structure</th><th>Ligand</th><th class="num">Best affinity</th><th class="num">RMSD of pose 1</th><th>Notes</th></tr>

@@ -7,11 +7,11 @@ export const citing = {
 software, together with the papers describing the methods it uses.</p>
 
 <h2>The program</h2>
-<p class="note">TCCG Center, University of Zakho. <i>QuarkSuit</i>, version 1.0 [computer software].
+<p class="note">TCCG Center, University of Zakho. <i>QuarkSuit</i>, version 2026 [computer software].
 2026.</p>
 <pre>@misc{quarksuit2026,
   author = {{TCCG Center, University of Zakho}},
-  title  = {QuarkSuit, version 1.0},
+  title  = {QuarkSuit, version 2026},
   year   = {2026},
   note   = {Software for molecular docking, structure preparation and ligand design}
 }</pre>
@@ -40,7 +40,7 @@ software, together with the papers describing the methods it uses.</p>
   <li>for validation, the RMSD of the redocked co-crystal ligand.</li>
 </ul>
 <p>For example, for the <a href="#tutorial">tutorial</a>:</p>
-<blockquote class="note">Docking was carried out with QuarkSuit 1.0 (TCCG Center, University of Zakho), which
+<blockquote class="note">Docking was carried out with QuarkSuit 2026 (TCCG Center, University of Zakho), which
 uses the AutoDock Vina scoring function [1, 2]. Streptavidin (PDB 1STP) was prepared by removing the crystal
 waters and the co-crystallised biotin, adding polar hydrogens for pH 7.4 and assigning Gasteiger charges [3];
 biotin was prepared in the same way. A 20 &times; 20 &times; 20 &Aring; box was centred on the crystal ligand

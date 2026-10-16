@@ -1,4 +1,4 @@
-// QuarkSuit v1 documentation: how to use the program and how it works. Chapter ids are
+// QuarkSuit 2026 documentation: how to use the program and how it works. Chapter ids are
 // linked as #documentation/<id>. Equations are MathML, which current browsers draw natively.
 
 const parts = [
@@ -60,7 +60,7 @@ const toc = parts.map(([name, list]) => {
 export const documentation = {
   title: 'Documentation',
   render: () => `
-<h1>QuarkSuit v1 documentation</h1>
+<h1>QuarkSuit 2026 documentation</h1>
 <p class="lead">How to use QuarkSuit, and how it works. The first part goes through the program
 workspace by workspace. The second explains the methods inside it: how structures are read and
 protonated, how partial charges are calculated, how the UFF and MMFF94 force fields and the
@@ -80,7 +80,7 @@ icon (a circled exclamation mark) beside an option, explains it.</p>
 <!-- ============================================================ PART I -->
 
 ${head('d-intro')}
-<p>QuarkSuit is a Windows program for structure-based drug design. It reads a protein (the
+<p>QuarkSuit is a program for structure-based drug design on Windows and Ubuntu. It reads a protein (the
 receptor) and a small molecule or peptide (the ligand), prepares both for docking, predicts how
 the ligand binds in a region you choose, and helps you examine, picture and report the result.
 Everything runs on your own computer: the docking engine and the chemistry toolkit are part of
@@ -114,19 +114,19 @@ ${back}
 
 ${head('d-install')}
 <p>System requirements, the installer and the files it installs are on the <a href="#download">Download</a> page.
-QuarkSuit registers <code>.qs</code> project files, so double-clicking one in Explorer opens it.</p>
+QuarkSuit registers <code>.qs</code> project files, so double-clicking one in Explorer (or the Ubuntu file manager) opens it.</p>
 <h3>Where QuarkSuit keeps its files</h3>
 <div class="table-wrap"><table>
   <tr><th>Item</th><th>Location</th></tr>
-  <tr><td>Settings: language, theme, window controls, interface size, graphics and docking devices, recent projects</td><td><code>%APPDATA%\\QuarkSuit\\settings.ini</code></td></tr>
-  <tr><td>Crash reports</td><td><code>%APPDATA%\\QuarkSuit\\crashes</code></td></tr>
+  <tr><td>Settings: language, theme, window controls, interface size, graphics and docking devices, recent projects</td><td><code>%APPDATA%\\QuarkSuit\\settings.ini</code>; Ubuntu: <code>~/.config/QuarkSuit/settings.ini</code></td></tr>
+  <tr><td>Crash reports</td><td><code>%APPDATA%\\QuarkSuit\\crashes</code>; Ubuntu: <code>~/.local/share/QuarkSuit/crashes</code></td></tr>
   <tr><td>Temporary chemistry files</td><td>A work folder under your temporary directory, removed when each job ends</td></tr>
 </table></div>
 <h3>Checking an installation</h3>
-<p>From a command prompt in the installation folder, <code>QuarkSuit.exe --selftest</code> checks the chemistry
+<p>From a command prompt in the installation folder, <code>QuarkSuit.exe --selftest</code> (Ubuntu: <code>quarksuit --selftest</code>) checks the chemistry
 engine (including paths with non-Latin characters, force-field gradients against numerical derivatives and metal
 geometries) and the graphics card's compute driver, without opening the window, and prints the result.
-<code>QuarkSuit.exe --gl-info</code> prints the OpenGL renderer in use.</p>
+<code>QuarkSuit.exe --gl-info</code> (Ubuntu: <code>quarksuit --gl-info</code>) prints the OpenGL renderer in use.</p>
 ${back}
 
 ${head('d-start')}
@@ -178,11 +178,11 @@ box move counts as one step. The Visualization and Small Molecule Design workspa
 <h3>Settings</h3>
 <div class="table-wrap"><table>
   <tr><th>Setting</th><th>Choices</th><th>Effect</th></tr>
-  <tr><td>Language</td><td>English, Kurdish (Sorani), Arabic</td><td>Menus, panel headers and buttons; Kurdish and Arabic are written right to left.</td></tr>
+  <tr><td>Language</td><td>English, Arabic</td><td>The whole interface, at once: menus, panels, buttons, notes and messages. Arabic reads right to left; file names, numbers and units keep their own direction.</td></tr>
   <tr><td>Theme</td><td>Dark Modern, Light Clean, Classic, Black &amp; White</td><td>Colours of the interface. The Windows title bar follows: dark or light on Windows 10, the theme's own colour on Windows 11.</td></tr>
   <tr><td>Window controls</td><td>Classic, Modern</td><td>Style of the minimise, maximise and close buttons of the tool windows.</td></tr>
-  <tr><td>Interface size</td><td>Match Windows, or 75&ndash;300&nbsp;%</td><td>Size of text and panels, for high-resolution screens. Applies after a restart.</td></tr>
-  <tr><td>Graphics GPU</td><td>Automatic, or a named graphics card</td><td>On laptops with two GPUs, the card that draws the window. Applies after a restart.</td></tr>
+  <tr><td>Interface size</td><td>Match Windows (on Ubuntu: Match the desktop), or 75&ndash;300&nbsp;%</td><td>Size of text and panels, for high-resolution screens. Applies after a restart.</td></tr>
+  <tr><td>Graphics GPU</td><td>Automatic, or a named graphics card</td><td>On laptops with two GPUs, the card that draws the window. Applies after a restart. On Ubuntu the desktop chooses the card, and the setting shows the one in use.</td></tr>
   <tr><td>Docking engine</td><td>CPU only, GPU, Hybrid (GPU + CPU)</td><td>What builds the receptor energy grids (${link('d-gpu')}). The search always runs on the processor cores.</td></tr>
   <tr><td>GPU device, Test GPU</td><td>The first GPU, or a named OpenCL device</td><td>The device used in GPU and Hybrid modes; Test GPU builds a real grid on it and compares it with the processor's.</td></tr>
 </table></div>
@@ -578,18 +578,16 @@ ${back}
 <!-- ============================================================ PART II -->
 
 ${head('d-architecture')}
-<p>QuarkSuit is written in C++ and consists of three parts that run on your computer.</p>
+<p>QuarkSuit is written in C++ and consists of two programs that run on your computer.</p>
 <dl>
-  <dt>The application (<code>QuarkSuit.exe</code>)</dt><dd>The window, the workspaces, file reading, the 3D drawing (OpenGL 2), the
-  docking engine, the interaction analysis and the 2D map. Long tasks run on background threads, so the interface stays responsive.</dd>
-  <dt>The chemistry engine (<code>quarksuit_chem.exe</code>)</dt><dd>A separate program for every chemistry operation: format conversion,
+  <dt>The application (<code>QuarkSuit.exe</code>; on Ubuntu <code>QuarkSuit</code>)</dt><dd>The window, the workspaces, file reading, the 3D drawing (OpenGL 2), the
+  docking engine, the rebuilding of missing heavy atoms, the interaction analysis and the 2D map. Long tasks run on background threads, so the interface stays responsive.</dd>
+  <dt>The chemistry engine (<code>quarksuit_chem.exe</code>; on Ubuntu <code>quarksuit_chem</code>)</dt><dd>A separate program for every chemistry operation: format conversion,
   bond-order perception, hydrogens and pH protonation, 2D and 3D coordinates, Gasteiger charges, AutoDock typing and torsion trees, force-field
   minimisation, conformer search and descriptors. It is built on the open-source RDKit toolkit, linked into it. Running it as a separate process
   means a problem in one molecule can never take the application down, and any job can be cancelled at once. The application talks to it
   through files and short progress lines (each minimisation step's energy and coordinates, for example), which is how the live energy graphs
   and animations are drawn from the real calculation.</dd>
-  <dt>The structure-repair helper</dt><dd>A small script run by the bundled Python, used only by <span class="ui">Rebuild missing heavy
-  atoms</span> (${link('d-repair')}).</dd>
 </dl>
 <h3>Rules every calculation follows</h3>
 <ul>
@@ -1118,8 +1116,8 @@ contacts, never in the charged or &pi; types.</div>
 <p>A residue near the ligand produces many atom pairs; only the closest pair of each type is kept. In the 2D map each residue is shown by its
 most significant contact: the highest type in the table, and among equals the shortest. The list is sorted the same way.</p>
 <h3 id="map-layout">The 2D map layout</h3>
-<p>The ligand is drawn from its own coordinates (or a clean 2D layout after <span class="ui">Fix Layout</span>, made by RDKit's CoordGen
-layout from the ligand's SDF or perceived bonds). Each residue card starts on a ring around the ligand, in the direction of the atom it
+<p>The ligand is drawn from its own coordinates (or a clean 2D layout after <span class="ui">Fix Layout</span>, made by RDKit's 2D
+depiction from the ligand's SDF or perceived bonds). Each residue card starts on a ring around the ligand, in the direction of the atom it
 contacts, outside the ligand's extent; cards on the same side fan out around that direction. Overlapping cards are then pushed apart along the
 axis that frees them soonest, and off the ligand's atoms, while a weak pull holds each near its start; the last passes only separate. Every card
 stays inside the canvas, so a long distance or a large ligand lines cards up along the edge. The same input always gives the same layout.</p>
@@ -1155,7 +1153,7 @@ ${back}
 
 ${head('d-validation')}
 <p>Redocking a co-crystal ligand into its own receptor is the standard check of a docking setup; the top pose should lie within 2&nbsp;&Aring; of
-the crystal position. Results measured with QuarkSuit v1 are on the <a href="#home">home page</a>, and the <a href="#tutorial">tutorial</a>
+the crystal position. Results measured with QuarkSuit 2026 are on the <a href="#home">home page</a>, and the <a href="#tutorial">tutorial</a>
 reproduces the first of them. On the same pose and inputs, QuarkSuit's affinities agree with AutoDock Vina 1.2 within 0.02&nbsp;kcal/mol,
 except where a sulfur accepts a hydrogen bond (${link('d-score')}, where the redocking test of the atom-typing rules is also described); on a 4-thread laptop processor its search was faster than Vina's on the two systems timed (33 against 51&nbsp;s and 56 against
 93&nbsp;s), which is not a general benchmark.</p>
@@ -1203,7 +1201,7 @@ ${head('d-trouble')}
   <dd>The file's bonds or hydrogens do not fit the element (often unlabelled alternate positions, or a hydrogen too many). The message names the
   atom and residue.</dd>
   <dt>QuarkSuit closed unexpectedly</dt>
-  <dd>A crash report is written to <code>%APPDATA%\\QuarkSuit\\crashes</code>. Please send it to the developers with a short description of what you
+  <dd>A crash report is written to <code>%APPDATA%\\QuarkSuit\\crashes</code> (Ubuntu: <code>~/.local/share/QuarkSuit/crashes</code>). Please send it to the developers with a short description of what you
   were doing.</dd>
 </dl>
 ${back}

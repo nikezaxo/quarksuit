@@ -1,53 +1,97 @@
+const windowsLogo = `<svg class="os-logo" viewBox="0 0 88 88" width="52" height="52" role="img" aria-label="Windows"><path fill="#0078d4" d="M0 0h42v42H0zM46 0h42v42H46zM0 46h42v42H0zM46 46h42v42H46z"/></svg>`;
+const packageIcon = `<svg class="os-logo" viewBox="0 0 88 88" width="52" height="52" role="img" aria-label="Ubuntu package"><path fill="none" stroke="#b35a1f" stroke-width="6" stroke-linejoin="round" d="M44 6 80 24v40L44 82 8 64V24zM8 24l36 18 36-18M44 42v40"/></svg>`;
+
 export const download = {
   title: 'Download',
   render: () => `
 <h1>Download</h1>
 
+<p>The current release is <b>QuarkSuit 2026</b>. Releases are named after their year. It comes in
+three editions with the same features; choose the one for your operating system.</p>
+
 <div class="download-box">
-  <svg class="os-logo" viewBox="0 0 88 88" width="52" height="52" role="img" aria-label="Windows"><path fill="#0078d4" d="M0 0h42v42H0zM46 0h42v42H46zM0 46h42v42H0zM46 46h42v42H46z"/></svg>
+  ${windowsLogo}
   <div>
-    <span class="file">QuarkSuit-v1-Setup.exe</span><br>
-    QuarkSuit v1 (1.0) installer for Windows 10 (version 1903 or later) and Windows 11, 64-bit.<br>
+    <span class="file">QuarkSuit-2026-Windows-Setup.exe</span><br>
+    QuarkSuit 2026 for Windows 10 and Windows 11, 64-bit.<br>
     <b>Not available for download yet.</b>
   </div>
 </div>
 
-<p>QuarkSuit is free for research, teaching and personal use. There is no macOS or Linux
-version.</p>
+<div class="download-box">
+  ${windowsLogo}
+  <div>
+    <span class="file">QuarkSuit-2026-Windows7-8-Setup.exe</span><br>
+    QuarkSuit 2026 for Windows 7 (with Service Pack 1), Windows 8 and Windows 8.1, 64-bit.<br>
+    <b>Not available for download yet.</b>
+  </div>
+</div>
+
+<div class="download-box">
+  ${packageIcon}
+  <div>
+    <span class="file">QuarkSuit-2026-Ubuntu-amd64.deb</span><br>
+    QuarkSuit 2026 for Ubuntu 22.04 or newer (24.04, 26.04 and the releases between them), 64-bit.<br>
+    <b>Not available for download yet.</b>
+  </div>
+</div>
+
+<p>QuarkSuit is free for research, teaching and personal use. There is no macOS version.</p>
 
 <h2 id="requirements">System requirements</h2>
 <div class="table-wrap"><table>
-  <tr><th>Operating system</th><td>Windows 10 version 1903 or later, or Windows 11; 64-bit only</td></tr>
+  <tr><th>Operating system</th><td>Windows 10 or 11; Windows 7 with Service Pack 1, 8 or 8.1 (their own edition);
+  Ubuntu 22.04 or newer. 64-bit (x86-64) only.</td></tr>
   <tr><th>Processor</th><td>Any 64-bit processor. Docking uses every core, so more cores means shorter runs.</td></tr>
-  <tr><th>Graphics</th><td>OpenGL 2.0 or newer. Without a working graphics driver QuarkSuit starts with its built-in software renderer (slower, but it works).</td></tr>
-  <tr><th>GPU grids (optional)</th><td>A graphics card whose driver includes OpenCL (NVIDIA, AMD, or Intel HD/UHD/Iris).</td></tr>
-  <tr><th>Administrator rights</th><td>Not needed; you can install for your own account.</td></tr>
-  <tr><th>Internet</th><td>Not needed, for installing or for running.</td></tr>
+  <tr><th>Graphics</th><td>OpenGL 2.0 or newer. On Windows, without a working graphics driver QuarkSuit starts with its
+  built-in software renderer (slower, but it works); on Ubuntu the system's own graphics libraries include such a renderer.</td></tr>
+  <tr><th>GPU grids (optional)</th><td>A graphics card whose driver includes OpenCL (NVIDIA, AMD, or Intel HD/UHD/Iris). On Ubuntu
+  also the OpenCL loader, package <code>ocl-icd-libopencl1</code>.</td></tr>
+  <tr><th>Administrator rights</th><td>Windows: not needed; you can install for your own account. Ubuntu: installing a
+  package needs <code>sudo</code>.</td></tr>
+  <tr><th>Internet</th><td>Not needed to install or run QuarkSuit on Windows. On Ubuntu, <code>apt</code> downloads any of
+  the standard system packages QuarkSuit uses that are not installed yet (for example <code>zenity</code>, for file dialogs).</td></tr>
 </table></div>
 
-<h2 id="install">Installing</h2>
+<h2 id="install">Installing on Windows</h2>
 <ol>
-  <li>Run <code>QuarkSuit-v1-Setup.exe</code>.</li>
+  <li>Run <code>QuarkSuit-2026-Windows-Setup.exe</code> (on Windows 7, 8 or 8.1:
+  <code>QuarkSuit-2026-Windows7-8-Setup.exe</code>).</li>
   <li>Read the licence agreement and accept it.</li>
-  <li>Choose the installation folder. Folder names in Kurdish, Arabic or other scripts are fine.</li>
+  <li>Choose the installation folder. Folder names in Arabic or other scripts are fine.</li>
   <li>Optionally tick <span class="ui">Create a desktop shortcut</span>, then click <span class="ui">Install</span>.</li>
 </ol>
-<p>To uninstall, use <span class="ui">Settings &rsaquo; Apps</span> in Windows or
-<span class="ui">Uninstall QuarkSuit v1</span> in the Start menu. Your own structure files are
-never touched.</p>
+<p>To uninstall, use <span class="ui">Settings &rsaquo; Apps</span> (Windows 7 and 8: <span class="ui">Control Panel &rsaquo;
+Programs and Features</span>) or <span class="ui">Uninstall QuarkSuit 2026</span> in the Start menu. Your own structure
+files are never touched.</p>
 
 <h3>What the installer puts on your computer</h3>
 <div class="table-wrap"><table>
   <tr><th>File or folder</th><th>Purpose</th></tr>
   <tr><td><code>QuarkSuit.exe</code></td><td>The program.</td></tr>
-  <tr><td><code>quarksuit_chem.exe</code></td><td>Chemistry engine (RDKit): file conversion, hydrogens, charges, force fields, descriptors. Runs as a separate process so a failed operation can never close the program.</td></tr>
-  <tr><td><code>python\</code></td><td>A private Python 3.12 with RDKit, used only by <span class="ui">Fix Layout</span> in the 2D interaction diagram.</td></tr>
-  <tr><td><code>mesa\</code></td><td>Software OpenGL renderer, used only when the PC has no working graphics driver.</td></tr>
-  <tr><td><code>icons\</code>, <code>kurdish font\</code></td><td>Menu icons and the Amiri font.</td></tr>
-  <tr><td><code>licenses\</code>, <code>THIRD-PARTY-NOTICES.txt</code></td><td>Licence texts of the components QuarkSuit includes.</td></tr>
+  <tr><td><code>quarksuit_chem.exe</code></td><td>Chemistry engine (RDKit): file conversion, hydrogens, charges, force fields, descriptors, 2D layout. Runs as a separate process so a failed operation can never close the program.</td></tr>
+  <tr><td><code>mesa\\</code></td><td>Software OpenGL renderer, used only when the PC has no working graphics driver.</td></tr>
+  <tr><td><code>fonts\\</code>, <code>icons\\</code></td><td>The Amiri font and the menu icons.</td></tr>
+  <tr><td><code>licenses\\</code>, <code>THIRD-PARTY-NOTICES.txt</code></td><td>Licence texts of the components QuarkSuit includes.</td></tr>
 </table></div>
 <p>Settings are kept in <code>%APPDATA%\\QuarkSuit\\settings.ini</code>; crash reports, if any, in
 <code>%APPDATA%\\QuarkSuit\\crashes</code>. Nothing else on the system is changed.</p>
+
+<h2 id="install-ubuntu">Installing on Ubuntu</h2>
+<ol>
+  <li>Open a terminal in the folder that holds <code>QuarkSuit-2026-Ubuntu-amd64.deb</code>.</li>
+  <li>Run <code>sudo apt install ./QuarkSuit-2026-Ubuntu-amd64.deb</code>.</li>
+  <li>Start <span class="ui">QuarkSuit 2026</span> from the applications menu, or type <code>quarksuit</code> in a terminal.</li>
+</ol>
+<p>To uninstall, run <code>sudo apt remove quarksuit</code>. Your own structure files are never touched.</p>
+<div class="table-wrap"><table>
+  <tr><th>File or folder</th><th>Purpose</th></tr>
+  <tr><td><code>/opt/quarksuit/</code></td><td>The program (<code>QuarkSuit</code>), its chemistry engine (<code>quarksuit_chem</code>), fonts, icons and licence texts.</td></tr>
+  <tr><td><code>/usr/bin/quarksuit</code></td><td>The <code>quarksuit</code> command.</td></tr>
+  <tr><td>Menu entry and icons</td><td><code>/usr/share/applications/quarksuit.desktop</code> and <code>/usr/share/icons/hicolor</code>; <code>.qs</code> project files open in QuarkSuit.</td></tr>
+</table></div>
+<p>Settings are kept in <code>~/.config/QuarkSuit/settings.ini</code>; crash reports, if any, in
+<code>~/.local/share/QuarkSuit/crashes</code>.</p>
 
 <h2 id="tutorial-files">Tutorial files</h2>
 <p>The input and output files of the <a href="#tutorial">tutorial</a>:</p>
@@ -78,8 +122,8 @@ installation folder).</p>
   <tr><th>Component</th><th>Used for</th><th>Licence</th></tr>
   <tr><td>Portions of AutoDock Vina (The Scripps Research Institute)</td><td>Scoring function of the docking engine</td><td>Apache 2.0</td></tr>
   <tr><td>RDKit, with RingDecomposerLib, Boost headers and better-enums</td><td>Chemistry engine</td><td>BSD 3-Clause; Boost 1.0; BSD 2-Clause</td></tr>
-  <tr><td>Python 3.12, RDKit, NumPy, Pillow</td><td>2D layout (Fix Layout)</td><td>PSF; BSD 3-Clause; MIT-CMU</td></tr>
-  <tr><td>Mesa 3D (llvmpipe)</td><td>Software renderer</td><td>MIT; Apache 2.0 with LLVM exceptions</td></tr>
+  <tr><td>PDBFixer residue templates; OpenMM force-field data</td><td>Rebuilding missing heavy atoms; residue charges</td><td>MIT</td></tr>
+  <tr><td>Mesa 3D (llvmpipe), Windows editions only</td><td>Software renderer</td><td>MIT; Apache 2.0 with LLVM exceptions</td></tr>
   <tr><td>Dear ImGui, GLFW, GLAD, stb</td><td>User interface, window and images</td><td>MIT; zlib; MIT; public domain</td></tr>
   <tr><td>Amiri font; Font Awesome Free icons</td><td>Interface text and menu icons</td><td>SIL OFL 1.1; OFL 1.1 and CC BY 4.0</td></tr>
 </table></div>

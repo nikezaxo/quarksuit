@@ -11,8 +11,9 @@ software; the terms are summarised on the <a href="#download/licence">Download</
 ${qa('needs', 'Do I need AutoDock Vina, AutoDockTools, Open Babel or Python?', `<p>No. The docking engine and the
 chemistry toolkit are part of QuarkSuit, and the installer brings everything else it uses.</p>`)}
 
-${qa('platforms', 'Does it run on macOS or Linux?', `<p>No. QuarkSuit v1 is for 64-bit Windows 10 (version 1903
-or later) and Windows 11.</p>`)}
+${qa('platforms', 'Which operating systems does it run on?', `<p>QuarkSuit 2026 runs on 64-bit Windows 10 and
+Windows 11, on Windows 7 (Service Pack 1), 8 and 8.1 with its own installer, and on Ubuntu 22.04 or newer.
+There is no macOS version. See <a href="#download">Download</a>.</p>`)}
 
 ${qa('vina', 'How does QuarkSuit relate to AutoDock Vina?', `<p>QuarkSuit's docking engine uses the Vina scoring
 function; the parts adapted from AutoDock Vina are used under its Apache 2.0 licence. For the same pose QuarkSuit
@@ -54,9 +55,9 @@ ${qa('repeat', 'Why do repeated runs give different results?', `<p>The search di
 exhaustiveness (double it and compare) and make the box no larger than needed. With the same settings on the same
 computer, repeated runs of the tutorial gave identical results.</p>`)}
 
-${qa('screening', 'Can I dock many ligands at once?', `<p>Not in version 1: each docking run takes one ligand.</p>`)}
+${qa('screening', 'Can I dock many ligands at once?', `<p>Not in QuarkSuit 2026: each docking run takes one ligand.</p>`)}
 
-${qa('flex', 'Can receptor side chains move?', `<p>No. The receptor is rigid in version 1; only the ligand is
+${qa('flex', 'Can receptor side chains move?', `<p>No. The receptor is rigid in QuarkSuit 2026; only the ligand is
 flexible.</p>`)}
 
 ${qa('gpu', 'Does docking use the graphics card?', `<p>Optionally, for building the receptor energy grids (OpenCL);
@@ -70,7 +71,7 @@ ${qa('script', 'Is there a command line or scripting interface?', `<p>No. QuarkS
 command line only offers diagnostics (<code>--selftest</code>, <code>--gl-info</code>).</p>`)}
 
 ${qa('bug', 'How do I report a problem?', `<p>If QuarkSuit closed unexpectedly, a crash report is waiting in
-<code>%APPDATA%\\QuarkSuit\\crashes</code>. Send it, or a description of the problem with the input files if you can
+<code>%APPDATA%\\QuarkSuit\\crashes</code> (Ubuntu: <code>~/.local/share/QuarkSuit/crashes</code>). Send it, or a description of the problem with the input files if you can
 share them, to the TCCG Center (see <a href="#people/contact">People</a>).</p>`)}
 `,
 };
